@@ -7,12 +7,15 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "eas-build-on-success": "npx bugsnag-eas-build-on-success"
   },
   "dependencies": {
+    "@bugsnag/expo": "^49.0.0",
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-native-community/datetimepicker": "^3.0.9",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-community/netinfo": "9.3.10",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/material-top-tabs": "^6.6.5",
     "@react-navigation/native": "^6.1.9",
@@ -22,9 +25,14 @@
     "dayjs": "^1.11.10",
     "deprecated-react-native-prop-types": "^5.0.0",
     "expo": "^49.0.0",
+    "expo-application": "~5.3.0",
     "expo-blur": "~12.4.1",
     "expo-camera": "~13.4.4",
+    "expo-constants": "~14.4.2",
+    "expo-crypto": "~12.4.1",
     "expo-dev-client": "~2.4.12",
+    "expo-device": "~5.4.0",
+    "expo-file-system": "~15.4.5",
     "expo-font": "~11.4.0",
     "expo-image-manipulator": "~11.3.0",
     "expo-image-picker": "~14.3.2",
@@ -55,7 +63,9 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@bugsnag/plugin-expo-eas-sourcemaps": "^49.0.0",
+    "@bugsnag/source-maps": "^2.3.1"
   },
   "private": true
 }

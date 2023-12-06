@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "reckit-v2",
-    "slug": "reckit-v2",
-    "version": "1.0.0",
+    "name": "Reckit",
+    "slug": "reckit",
+    "version": "2.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -41,8 +41,14 @@
     },
     "extra": {
       "eas": {
-        "projectId": "6b6cdbd8-2fe6-4e06-80ef-e1809ba0525b"
+        "projectId": "0ac5cadd-f699-4827-9781-cf92306ae652"
+      },
+      "bugsnag": {
+        "apiKey": "7856a70c9e897fcef507957c5c96beef"
       }
-    }
+    },
+    "plugins": [
+      "@bugsnag/plugin-expo-eas-sourcemaps"
+    ]
   }
 }

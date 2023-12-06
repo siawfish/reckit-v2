@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import StackNavigation from './navigation/StackNavigation';
 import {PersistedStore, Store} from "./redux/store";
-import {PersistGate} from 'redx-persist/integration/react';
+import {PersistGate} from 'redux-persist/integration/react';
 import {Provider} from 'react-redux'
 const ErrorBoundary = Bugsnag.getPlugin('react').createErrorBoundary(React)
 
@@ -28,6 +28,9 @@ const ErrorView = () =>
       Sorry, something terribly bad happened.
     </Text>
   </View>
+
+  // report test error with bugsnag
+  Bugsnag.notify(new Error('Test error'))
 
 export default function App() {
   return (

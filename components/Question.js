@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import propic from '../assets/propic.png'
+import propic from '../assets/propic.jpeg'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import dayjs from 'dayjs'
 
@@ -16,7 +16,7 @@ export default function Question({
                 <View style={styles.reckonOwnerRow}>
                     <Text numberOfLines={1} style={styles.reckonOwner}>{item?.author?.displayName}</Text>
                     <View style={styles.dot}></View>
-                    <Text style={styles.timestamp}>{item?.createdAt?.seconds ? dayjs.unix(item?.createdAt?.seconds).fromNow() : dayjs(item?.createdAt).fromNow() }</Text>
+                    <Text style={styles.timestamp}>{item?.createdAt?.seconds ? dayjs.unix(item?.createdAt?.seconds).fromNow(true) : dayjs(item?.createdAt).fromNow(true) }</Text>
                 </View>
                 <Text style={styles.reckon}>{item?.message}</Text>
                 <TouchableOpacity onPress={toggleShowComment} style={styles.reckonStatWrapper}>
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
         paddingVertical:10,
         flexDirection:"row",
         backgroundColor:"#fff",
-        paddingHorizontal:10
     },
 
     propic: {
@@ -54,7 +53,8 @@ const styles = StyleSheet.create({
     reckonOwnerRow: {
         flexDirection:"row",
         alignItems:"center",
-        flex:1
+        flex:1,
+        justifyContent:"flex-end"
     },
 
     reckonOwner: {

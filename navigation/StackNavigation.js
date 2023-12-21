@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import AddBusiness from '../screens/AddBusiness'
 import Business from '../screens/Business'
-import { View, Alert, Image, Text } from 'react-native'
+import { View, Alert, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import MainNavigation from './MainNavigation'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -14,7 +14,7 @@ import TermsOfService from '../screens/TermsOfService'
 import EditBusiness from '../screens/EditBusiness'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Root } from 'native-base'
-import * as Font from 'expo-font'
+import { useFonts } from 'expo-font';
 import Welcome from '../screens/Welcome'
 import Register from '../components/Register'
 import { useSelector, useDispatch } from 'react-redux'
@@ -44,25 +44,14 @@ export default function StackNavigation() {
     const { isAuthenticated, showOnboarding } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
+    const [fontsLoaded] = useFonts({
+        'Open-Sans': require('../assets/fonts/Open_Sans/OpenSans-Light.ttf'),
+        'Open-Sans-Bold':  require('../assets/fonts/Open_Sans/OpenSans-SemiBold.ttf')
+    });
+
     useEffect(() => {
-        initialRender()
+        getPermissionStatus()
     }, [])
-
-    const initialRender = async () => {
-        await loadFont()
-        await getPermissionStatus()
-    }
-
-    const loadFont = async () => {
-        try {
-            await Font.loadAsync({
-                'Open-Sans': require('../assets/fonts/Open_Sans/OpenSans-Light.ttf'),
-                'Open-Sans-Bold':  require('../assets/fonts/Open_Sans/OpenSans-SemiBold.ttf')
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     const requestPermission = async () => {
         try {
@@ -110,7 +99,7 @@ export default function StackNavigation() {
         }
     }
 
-    if(isLoading){
+    if(isLoading || !fontsLoaded){
         return (
             <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
                 <Animatable.Image iterationCount='infinite' iterationDelay={1000} animation={pulse} style={{width:100, height:100, marginBottom:20}} source={logo} />

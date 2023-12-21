@@ -68,7 +68,7 @@ export default function Reckon({
 
     return (
         <>
-            <TouchableOpacity onPress={toggleDetails} style={styles.conatiner}>
+            <TouchableOpacity onPress={toggleDetails} style={styles.container}>
                 <Question 
                     item={item} 
                     toggleShowComment={toggleShowComment}
@@ -104,18 +104,11 @@ export default function Reckon({
 }
 
 const styles = StyleSheet.create({
-    conatiner: {
+    container: {
         backgroundColor:"#fff",
-        borderRadius:8,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-        padding:5,
-        marginBottom:10
+        marginBottom:2,
+        borderBottomColor:"#eee",
+        borderBottomWidth:1,
+        paddingHorizontal:16,
     }
 })

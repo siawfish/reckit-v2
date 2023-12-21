@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
-import propic from '../assets/propic.png'
+import propic from '../assets/propic.jpeg'
 
 export default function Reply ({
     toggleDetails,

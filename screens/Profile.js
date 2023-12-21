@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, StyleSheet, View, Dimensions, Image, TouchableOpacity } from 'react-native'
-import propic from '../assets/propic.png'
+import propic from '../assets/propic.jpeg'
 import { Ionicons } from '@expo/vector-icons'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import BusinessListings from '../components/BusinessListings'

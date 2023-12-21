@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet, View, Image, TextInput, Modal } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import propic from '../assets/propic.png'
+import propic from '../assets/propic.jpeg'
 import CancelButton from './CancelButton'
 import PostButton from './PostButton'
 

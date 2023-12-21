@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import propic from '../assets/propic.png'
+import propic from '../assets/propic.jpeg'
 import dayjs from 'dayjs'
 
 export default function Comment({
@@ -13,7 +13,7 @@ export default function Comment({
                 <View style={styles.reckonOwnerRow}>
                     <Text numberOfLines={1} style={styles.reckonOwner}>{comment?.author?.displayName}</Text>
                     <View style={styles.dot}></View>
-                    <Text style={styles.timestamp}>{comment?.createdAt?.seconds ? dayjs.unix(comment?.createdAt?.seconds).fromNow(true) : dayjs(comment?.createdAt).fromNow()}</Text>
+                    <Text style={styles.timestamp}>{comment?.createdAt?.seconds ? dayjs.unix(comment?.createdAt?.seconds).fromNow(true) : dayjs(comment?.createdAt).fromNow(true)}</Text>
                 </View>
                 <Text style={styles.reckon}>{comment?.message}</Text>
             </View>

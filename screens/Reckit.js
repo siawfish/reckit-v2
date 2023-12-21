@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet, View, Dimensions, Image, ActivityIndicator, FlatList } from 'react-native'
 import Reckon from '../components/Reckon'
-import propic from '../assets/propic.png'
+import propic from '../assets/propic.jpeg'
 import { FontAwesome } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
 import PostForm from '../components/PostForm'
@@ -11,7 +11,6 @@ import { Toast } from 'native-base'
 import { API } from '../utils/confiq'
 import { addReckits, setReckits, addMyReckits } from '../redux/reckitStore'
 import NoListing from '../components/NoListing'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const windowHeight = Dimensions.get('window').height
 const delay = 60
@@ -137,7 +136,7 @@ export default function Reckit({
                             refreshing={refreshing}
                             keyExtractor={item=>item.id}
                             renderItem={({item})=><Reckon navigation={navigation} item={item} />}
-                            contentContainerStyle={{paddingHorizontal:20, paddingVertical:20}}
+                            contentContainerStyle={{paddingVertical:20}}
                             ListEmptyComponent={
                                 <NoListing 
                                     title="Have any experiences you'd like to share?" 

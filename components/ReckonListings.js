@@ -124,7 +124,7 @@ export default function ReckonListings({
                     refreshing={refreshing}
                     onRefresh={()=>getMyReckits()}
                     key={item=>item.id}
-                    contentContainerStyle={{paddingHorizontal:20, paddingVertical:20}}
+                    contentContainerStyle={{paddingVertical:20}}
                     ListEmptyComponent={
                         <NoListing 
                             title="Have any experiences you'd like to share?" 

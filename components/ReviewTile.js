@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, StyleSheet, View, Image } from 'react-native'
-import propic from '../assets/propic.png'
+import propic from '../assets/propic.jpeg'
 import dayjs from 'dayjs'
 
 var relativeTime = require('dayjs/plugin/relativeTime')

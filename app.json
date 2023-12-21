@@ -42,13 +42,7 @@
     "extra": {
       "eas": {
         "projectId": "0ac5cadd-f699-4827-9781-cf92306ae652"
-      },
-      "bugsnag": {
-        "apiKey": "7856a70c9e897fcef507957c5c96beef"
       }
-    },
-    "plugins": [
-      "@bugsnag/plugin-expo-eas-sourcemaps"
-    ]
+    }
   }
 }

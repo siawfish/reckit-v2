@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         alignItems:"center",
         flex:1,
-        justifyContent:"flex-end"
+        justifyContent:"space-between"
     },
 
     reckonOwner: {

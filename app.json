@@ -2,7 +2,7 @@
   "expo": {
     "name": "Reckit",
     "slug": "reckit",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -29,7 +29,7 @@
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "package": "com.reckitonline.reckit",
-      "versionCode": 9,
+      "versionCode": 10,
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyCSrRuI2dns15TDy3YhE85r19HXbHrAjr0"

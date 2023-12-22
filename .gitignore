@@ -9,6 +9,9 @@ node_modules/**/*
 .vscode/
 dist/
 web-build/
+android
+ios
+
 
 # Native
 *.orig.*

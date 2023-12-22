@@ -101,7 +101,7 @@ export default function StackNavigation() {
 
     if(isLoading || !fontsLoaded){
         return (
-            <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
+            <View style={{flex:1, alignItems:"center", justifyContent:"center", backgroundColor: "#ffffff"}}>
                 <Animatable.Image iterationCount='infinite' iterationDelay={1000} animation={pulse} style={{width:100, height:100, marginBottom:20}} source={logo} />
                 <Text style={{fontSize:13, color:"#999999"}}>Initializing app...</Text>
             </View>

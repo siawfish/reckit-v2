@@ -5,17 +5,14 @@ import StackNavigation from './navigation/StackNavigation';
 import {PersistedStore, Store} from "./redux/store";
 import {PersistGate} from 'redux-persist/integration/react';
 import {Provider} from 'react-redux'
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <Provider store={Store}>
-        <PersistGate loading={null} persistor={PersistedStore}>
-          <StatusBar style="auto" />
-          <StackNavigation />
-        </PersistGate>
-      </Provider>
-    </GestureHandlerRootView>
+    <Provider store={Store}>
+      <PersistGate loading={null} persistor={PersistedStore}>
+        <StatusBar style="auto" />
+        <StackNavigation />
+      </PersistGate>
+    </Provider>
   );
 }

@@ -10,7 +10,8 @@ import { updateMyReckits } from '../redux/reckitStore'
 
 export default function Reckon({
     navigation,
-    item
+    item,
+    getMyReckits
 }){
     const dispatch = useDispatch()
     const { authToken, profile } = useSelector(state=>state.app)
@@ -70,6 +71,7 @@ export default function Reckon({
         <>
             <TouchableOpacity onPress={toggleDetails} style={styles.container}>
                 <Question 
+                    onDeleteComplete={getMyReckits}
                     item={item} 
                     toggleShowComment={toggleShowComment}
                     commentsCount={comments?.length}
@@ -98,6 +100,7 @@ export default function Reckon({
                 defaultComment={comment}
                 isSubmitting={isSubmitting}
                 onChangeText={(text)=>setComment(text)}
+                onDeleteComplete={getMyReckits}
             />
         </>
     )

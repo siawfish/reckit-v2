@@ -15,56 +15,34 @@ export default function HomeTab({
     reviews=[]
 }){
     const [showOpeningHours, setShowOpeningHours] = React.useState(false)
-    const [isOpened, setIsOpened] = React.useState(false)
-    const [status, setStatus] = React.useState(false)
-    const [openingHour, setOpeningHours] = React.useState(new Date().toLocaleTimeString())
-    const [closingHour, setClosingHours] = React.useState(new Date().toLocaleTimeString())
+    const today = date.toDateString()
+    const dayArr = today.split(' ')
+    const format = 'MM/DD/YY HH:mm'
 
-    React.useEffect(()=>{
-        const today = date.toDateString()
-        const dayArr = today.split(' ')
+    const opening = business?.business_hours.find(time=>{
+        return time.day==dayArr[0].toLowerCase()
+    })
 
-        const openingHoursArray = business?.business_hours.filter(time=>{
-            return time.day==dayArr[0].toLowerCase()
-        })
-        setOpeningHours(openingHoursArray[0].open)
-        setClosingHours(openingHoursArray[0].close)
-        if(openingHoursArray[0].status===1){
-            setStatus(true)
-        }
-    },[date])
+    const openingHour = opening?.open
+    const closingHour = opening?.close
+    const status = opening?.status
 
-    React.useEffect(()=>{
-        if(status){
-            const dateString = new Date().toLocaleDateString()
-            const format = 'MM/DD/YY HH:mm'
-            const open = dayjs(`${dateString} ${convertTime12to24(openingHour)}`, format)
-            const close = dayjs(`${dateString} ${convertTime12to24(closingHour)}`, format)
-            const day = dayjs(`${dateString} ${new Date().toLocaleTimeString()}`, format)
-            if(day.isBetween(open, close, null, '[)')){
-                setIsOpened(true)
-            }
-        }
-    },[status])
-
-    const convertTime12to24 = (time12h) => {
-        const [time, modifier] = time12h.split(' ');
-        let [hours, minutes] = time.split(':');
-        if (hours === '12') {
-          hours = '00';
-        }
-        if (modifier === 'PM') {
-          hours = parseInt(hours, 10) + 12;
-        }
-        return `${hours}:${minutes}`;
+    const isCurrentTimeBetweenOpeningClosing = (opening, closing) => {
+        if(status!==1) return false;
+        const day = dayjs(`${date.toLocaleDateString()} ${new Date().toLocaleTimeString()}`, format)
+        const open = dayjs(`${date.toLocaleDateString()} ${opening}`, format)
+        const close = dayjs(`${date.toLocaleDateString()} ${closing}`, format)
+        return day.isBetween(open, close, null, '[)')
     }
+
+    const isOpened = isCurrentTimeBetweenOpeningClosing(openingHour, closingHour)
 
     const toggleShowOpeningHours = ()=> {
         setShowOpeningHours(!showOpeningHours)
     }
 
     const categoryItem = categories.filter(category=>{
-        return category.name = business?.category
+        return category.name == business?.category
     })
 
     const gotoMaps = ()=>{
@@ -100,6 +78,11 @@ export default function HomeTab({
         });
     }
 
+    const sortedOpeningHours = business?.business_hours.sort((a, b)=>{
+        const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+        return days.indexOf(a.day) - days.indexOf(b.day)
+    })
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.sectionWrapper}>
@@ -132,7 +115,7 @@ export default function HomeTab({
                     <View style={styles.openingTimesWrapper}>
                         <Text style={[styles.title, {paddingBottom:8}]}>Opening hours</Text>
                         {
-                            business?.business_hours.map((timeObj, i)=>{
+                            sortedOpeningHours?.map((timeObj, i)=>{
                                 return(
                                     <View key={i} style={styles.timeWrapper}>
                                         <Text style={styles.day}>{timeObj.day}.</Text>

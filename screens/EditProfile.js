@@ -129,10 +129,10 @@ export default function EditProfile({navigation}) {
             })
             formData.append("firstName", name.split(' ').slice(0, -1).join(' '))
             formData.append("lastName", name.split(' ').slice(-1).join(' '))
-            formData.append("otherNames", name.split(' ').slice(1, -1).join(' '))
             formData.append("phone", phone)
             formData.append("location", location)
             API.setHeader('Authorization', 'Bearer '+authToken)
+            API.setHeader('Content-Type', 'multipart/form-data')
             const { ok, data, problem } = await API.patch('/users', formData)
             if(ok) {
                 dispatch(setUserProfile(data?.user))

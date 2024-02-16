@@ -120,10 +120,10 @@ export default function ReckonListings({
                 </View> :
                 <FlatList 
                     data={myReckits}
-                    renderItem={({item})=><Reckon navigation={navigation} item={item} />}
+                    renderItem={({item})=><Reckon getMyReckits={getMyReckits} navigation={navigation} item={item} />}
                     refreshing={refreshing}
                     onRefresh={()=>getMyReckits()}
-                    key={item=>item.id}
+                    keyExtractor={item=>item.id}
                     contentContainerStyle={{paddingVertical:20}}
                     ListEmptyComponent={
                         <NoListing 

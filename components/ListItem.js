@@ -17,49 +17,27 @@ export default function ListItem({
     style
 }){
     const { location } = useSelector(state=>state.app)
-    const [status, setStatus] = React.useState(false)
-    const [openingHour, setOpeningHours] = React.useState(new Date().toLocaleTimeString())
-    const [closingHour, setClosingHours] = React.useState(new Date().toLocaleTimeString())
-    const [isOpened, setIsOpened] = React.useState(false)
-    
-    React.useEffect(()=>{
-        const today = date.toDateString()
-        const dayArr = today.split(' ')
+    const today = date.toDateString()
+    const dayArr = today.split(' ')
+    const format = 'MM/DD/YY HH:mm'
 
-        const openingHoursArray = business?.business_hours.filter(time=>{
-            return time.day==dayArr[0].toLowerCase()
-        })
-        setOpeningHours(openingHoursArray[0].open)
-        setClosingHours(openingHoursArray[0].close)
-        if(openingHoursArray[0].status===1){
-            setStatus(true)
-        }
-    },[date])
+    const opening = business?.business_hours.find(time=>{
+        return time.day==dayArr[0].toLowerCase()
+    })
 
-    React.useEffect(()=>{
-        if(status){
-            const dateString = new Date().toLocaleDateString()
-            const format = 'MM/DD/YY HH:mm'
-            const open = dayjs(`${dateString} ${convertTime12to24(openingHour)}`, format)
-            const close = dayjs(`${dateString} ${convertTime12to24(closingHour)}`, format)
-            const day = dayjs(`${dateString} ${new Date().toLocaleTimeString()}`, format)
-            if(day.isBetween(open, close, null, '[)')){
-                setIsOpened(true)
-            }
-        }
-    },[status])
+    const openingHour = opening?.open
+    const closingHour = opening?.close
+    const status = opening?.status
 
-    const convertTime12to24 = (time12h) => {
-        const [time, modifier] = time12h.split(' ');
-        let [hours, minutes] = time.split(':');
-        if (hours === '12') {
-          hours = '00';
-        }
-        if (modifier === 'PM') {
-          hours = parseInt(hours, 10) + 12;
-        }
-        return `${hours}:${minutes}`;
+    const isCurrentTimeBetweenOpeningClosing = (opening, closing) => {
+        if(status!==1) return false;
+        const day = dayjs(`${date.toLocaleDateString()} ${new Date().toLocaleTimeString()}`, format)
+        const open = dayjs(`${date.toLocaleDateString()} ${opening}`, format)
+        const close = dayjs(`${date.toLocaleDateString()} ${closing}`, format)
+        return day.isBetween(open, close, null, '[)')
     }
+
+    const isOpened = isCurrentTimeBetweenOpeningClosing(openingHour, closingHour)
 
     const haversine_distance = (mk1, mk2) => {
         var R = 3958.8; // Radius of the Earth in miles

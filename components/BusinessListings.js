@@ -46,7 +46,7 @@ export default function BusinessListings({navigation}) {
     }
 
     const publishedBusinesses = myBusinesses?.filter(business=>{
-        return business.published===1
+        return business.published?.toString()==='1'
     })
 
     return (

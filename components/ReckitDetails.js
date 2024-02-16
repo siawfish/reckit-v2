@@ -16,7 +16,8 @@ export default function ReckitDetails({
     onSubmit,
     onChangeText,
     defaultComment,
-    user
+    user,
+    onDeleteComplete
 }){
     return (
         <Modal
@@ -39,7 +40,7 @@ export default function ReckitDetails({
                                 </>
                             }
                             data={comments}
-                            renderItem={({item})=><Comment comment={item}  />}
+                            renderItem={({item})=><Comment onClose={onClose} onDeleteComplete={onDeleteComplete} comment={item}  />}
                             keyExtractor={item=>item.id}
                             contentContainerStyle={styles.commentArea}
                             ListEmptyComponent={<Text style={{textAlign:"center", color:"#999"}}>No replies to reckit yet.</Text>}

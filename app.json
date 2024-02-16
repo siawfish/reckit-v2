@@ -2,13 +2,13 @@
   "expo": {
     "name": "Reckit",
     "slug": "reckit",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
-      "backgroundColor": "#fff",
+      "backgroundColor": "#ffffff",
       "resizeMode": "contain"
     },
     "assetBundlePatterns": [
@@ -17,9 +17,6 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.reckitonline.reckit",
-      "config": {
-        "googleMapsApiKey": "AIzaSyCSrRuI2dns15TDy3YhE85r19HXbHrAjr0"
-      },
       "infoPlist": {
         "NSCameraUsageDescription": "Reckit uses the camera to take pictures for your profile photo and business images.",
         "NSLocationWhenInUseUsageDescription": "Reckit requires access to your location so that we can find closest businesses.",
@@ -29,12 +26,7 @@
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "package": "com.reckitonline.reckit",
-      "versionCode": 10,
-      "config": {
-        "googleMaps": {
-          "apiKey": "AIzaSyCSrRuI2dns15TDy3YhE85r19HXbHrAjr0"
-        }
-      }
+      "versionCode": 11
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -43,6 +35,12 @@
       "eas": {
         "projectId": "0ac5cadd-f699-4827-9781-cf92306ae652"
       }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0ac5cadd-f699-4827-9781-cf92306ae652"
     }
   }
 }

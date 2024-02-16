@@ -161,16 +161,18 @@ export default function EditBusiness({
 
     const openLibrary = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsEditing: true,
-          aspect: [4, 4],
-          quality: 1
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 4],
+            quality: 1
         })
+        if (!result?.canceled) {
+            setPreview({
+                status: true,
+                image: result.assets[0].uri
+            })
+        }
         setOpenCam(false)
-        setPreview({
-            status:true,
-            image:result.uri
-        })
     }
 
     const editDetails = async ()=> {
@@ -250,7 +252,7 @@ export default function EditBusiness({
                         <View style={styles.addPhotoWrapper}>
                             <FlatList
                                 data={business?.photos}
-                                keyExtractor={item=>item.id}
+                                keyExtractor={(item, index)=>index.toString()}
                                 renderItem={
                                     ({item})=><Image 
                                         source={{uri:item}} 
@@ -317,7 +319,7 @@ export default function EditBusiness({
             />
         }
         <ImagePreview 
-            open={preview.status&&preview.image}
+            open={preview.status}
             cancelSelectedImage={cancelSelectedImage}
             acceptSelectedImage={uploadSelectedImage}
             source={preview.image}

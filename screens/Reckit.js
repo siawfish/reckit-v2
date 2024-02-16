@@ -135,7 +135,7 @@ export default function Reckit({
                             onRefresh={()=>getReckits()}
                             refreshing={refreshing}
                             keyExtractor={item=>item.id}
-                            renderItem={({item})=><Reckon navigation={navigation} item={item} />}
+                            renderItem={({item})=><Reckon getMyReckits={getReckits} navigation={navigation} item={item} />}
                             contentContainerStyle={{paddingVertical:20}}
                             ListEmptyComponent={
                                 <NoListing 

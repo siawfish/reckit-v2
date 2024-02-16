@@ -75,8 +75,8 @@ export default function Business({
                     <Text>{item?.address}</Text>
                 </View>
                 <View style={styles.statusWrapper}>
-                    <View style={[styles.dot, item?.published && styles.active]}></View>
-                    <Text style={[styles.status, item?.published && styles.activeText]}>{item?.published===1 ? "Active" : "Inactive"}</Text>
+                    <View style={[styles.dot, item?.published?.toString() === '1' && styles.active]}></View>
+                    <Text style={[styles.status, item?.published?.toString() === '1' && styles.activeText]}>{item?.published?.toString() === '1' ? "Active" : "Inactive"}</Text>
                 </View>
             </View>
         </TouchableOpacity>

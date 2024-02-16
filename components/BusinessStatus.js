@@ -11,7 +11,7 @@ export default function BusinessStatus({
             <View style={styles.radioWrapper}>
                 <BouncyCheckbox
                     size={20}
-                    isChecked={status===1?true:false}
+                    isChecked={status?.toString()==='1'?true:false}
                     fillColor="#7536ad"
                     unfillColor="#f0f0f0"
                     text="Published"
@@ -24,7 +24,7 @@ export default function BusinessStatus({
             <View style={[styles.radioWrapper, {marginLeft:30}]}>
                 <BouncyCheckbox
                     size={20}
-                    isChecked={status===0?true:false}
+                    isChecked={status?.toString()==='0'?true:false}
                     fillColor="#7536ad"
                     unfillColor="#f0f0f0"
                     text="Unpublished"

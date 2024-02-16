@@ -146,6 +146,7 @@ export default function Business({
                             </TouchableOpacity>
                         }
                         horizontal
+                        keyExtractor={(item, index)=>index.toString()}
                         showsHorizontalScrollIndicator={false}
                         ListEmptyComponent={
                             <View style={styles.imgPlaceholder}>

@@ -36,6 +36,8 @@ export default function Opening({
             ...state,
             [name]: value
         })
+        setShowClock1(false)
+        setShowClock(false)
     }
 
     React.useEffect(()=>{
@@ -49,6 +51,7 @@ export default function Opening({
                 value={TIME}
                 mode="time"
                 display="spinner"
+                themeVariant="light"
                 is24Hour={false}
                 onChange={(event, date)=>onPickTime(event, date, type)}
             />
@@ -65,11 +68,11 @@ export default function Opening({
             <View style={styles.row}>
                 <Text style={[styles.duration]}>From</Text>
                 <TouchableOpacity 
-                    disabled={state.status===0} 
+                    disabled={state.status?.toString()==='0'} 
                     onPress={()=>setShowClock(true)} 
                     style={[
                         styles.timeBtn, 
-                        state.status===0 && styles.disabledTimeBtn
+                        state.status?.toString()==='0' && styles.disabledTimeBtn
                     ]}
                 >
                     <Text style={styles.time}>{state.open}</Text>
@@ -77,11 +80,11 @@ export default function Opening({
                 </TouchableOpacity>
                 <Text style={styles.toDuration}>To</Text>
                 <TouchableOpacity 
-                    disabled={state.status===0} 
+                    disabled={state.status?.toString()==='0'} 
                     onPress={()=>setShowClock1(true)} 
                     style={[
                         styles.timeBtn, 
-                        state.status===0 && 
+                        state.status?.toString()==='0' && 
                         styles.disabledTimeBtn
                     ]}
                 >

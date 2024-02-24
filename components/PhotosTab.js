@@ -28,7 +28,7 @@ export default function PhotosTab({
                 {
                     photos?.map((photo, i)=>{
                         return (
-                            <TouchableOpacity onPress={()=>viewImage(i)}>
+                            <TouchableOpacity key={i?.toString()} onPress={()=>viewImage(i)}>
                                 <Image 
                                     key={i}
                                     source={{uri:photo}}

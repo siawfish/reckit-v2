@@ -8,7 +8,8 @@ const initialState = {
     location: undefined,
     showOnboarding: true,
     categories: categories,
-    locationPermission: false
+    locationPermission: false,
+    pushToken: undefined
 }
 
 const AppStore = createSlice({

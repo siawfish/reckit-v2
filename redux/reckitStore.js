@@ -34,6 +34,31 @@ const ReckitStore = createSlice({
                 reckit.id !== action.payload.id
             })
             state.myReckits = [action.payload, ...filteredList]
+        },
+        removeMyReckitReply(state, action) {
+            const filteredList = state.myReckits.filter(reckit=>{
+                if(reckit.id === action.payload.reckitId){
+                    const filteredReplies = reckit.comments.filter(reply=>{
+                        reply.id !== action.payload.replyId
+                    })
+                    return {...reckit, comments:filteredReplies}
+                }
+                return reckit
+            })
+            console.log(filteredList)
+            state.myReckits = filteredList
+        },
+        removeReckitReply(state, action) {
+            const filteredList = state.reckits.filter(reckit=>{
+                if(reckit.id === action.payload.reckitId){
+                    const filteredReplies = reckit.comments.filter(reply=>{
+                        reply.id !== action.payload.replyId
+                    })
+                    return {...reckit, comments:filteredReplies}
+                }
+                return reckit
+            })
+            state.reckits = filteredList
         }
     }
 });
@@ -43,7 +68,9 @@ export const {
     addReckits,
     setMyReckits,
     addMyReckits,
-    updateMyReckits
+    updateMyReckits,
+    removeMyReckitReply,
+    removeReckitReply
 } = ReckitStore.actions;
 
 export const reckitReducer = ReckitStore.reducer;

@@ -7,7 +7,6 @@ export default function Reply ({
     isSubmitting,
     onChangeText,
     onSubmit,
-    item,
     showRepliesLink=true,
     defaultValue,
     user

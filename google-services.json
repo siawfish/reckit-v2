@@ -1,0 +1,379 @@
+{
+  "project_info": {
+    "project_number": "1031211553449",
+    "firebase_url": "https://reckit-178615.firebaseio.com",
+    "project_id": "reckit-178615",
+    "storage_bucket": "reckit-178615.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031211553449:android:8e23be4dc3961934",
+        "android_client_info": {
+          "package_name": "ahomiya.com.reckit_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031211553449-3d8h7ieh8uvghldb8eg9h3m7s6vfq5j1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android",
+            "certificate_hash": "811c0efad510368eca4a6f09b29629fbbd94a22e"
+          }
+        },
+        {
+          "client_id": "1031211553449-3li1k81fkoma9678h5hqdk91lrd7tne3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android",
+            "certificate_hash": "5262402a2c12fba2e2ccafcedff8395d54735abc"
+          }
+        },
+        {
+          "client_id": "1031211553449-6ubce2658t6si3prtcekggbjoa1uhkl1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android",
+            "certificate_hash": "729e685ca6e067880bd77f258d3ca245c43221e7"
+          }
+        },
+        {
+          "client_id": "1031211553449-a00ql2nv8baunvu86kn7o9ri8n346blu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android",
+            "certificate_hash": "b359b2542588831c9f231f9792a193efbf578f50"
+          }
+        },
+        {
+          "client_id": "1031211553449-k1fdq2eqcvm6oe3riedd51t6shpelar3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android",
+            "certificate_hash": "b76f7b879efc40690069e0cb2f29470ab3b54b66"
+          }
+        },
+        {
+          "client_id": "1031211553449-riq8rfbq65lvbr02viadp4ellgfd3jdt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android",
+            "certificate_hash": "3e3dc426e08f9dafb14d36331e1a74fd13f58cba"
+          }
+        },
+        {
+          "client_id": "1031211553449-rq4fvf318qm057a41idk5g6044nkrvr5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android",
+            "certificate_hash": "b18aae4105e805e71fabd01b2988ea12c0c73635"
+          }
+        },
+        {
+          "client_id": "1031211553449-u67g7apft7u0d2nhqg9muov6cevivvsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg7t1B73Wf-Pdu7RKuOshqw8Bn50qSB_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031211553449-3at050vc6pe74f0gmcbl7hqsotp9noke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1031211553449-tknc3aptlho2df4n03d2179fnp76nqup.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031211553449:android:702ac5768c76a4e7",
+        "android_client_info": {
+          "package_name": "ahomiya.com.reckit_android.demotesting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031211553449-0rneqp9rl40lvhststuu1dtkbt7hatdf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.demotesting",
+            "certificate_hash": "729e685ca6e067880bd77f258d3ca245c43221e7"
+          }
+        },
+        {
+          "client_id": "1031211553449-6c1hf1brei1uh360g93ftik7klv4umn6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.demotesting",
+            "certificate_hash": "b76f7b879efc40690069e0cb2f29470ab3b54b66"
+          }
+        },
+        {
+          "client_id": "1031211553449-ndj549c4gfjp1djcqik9t7b97om12lfe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.demotesting",
+            "certificate_hash": "811c0efad510368eca4a6f09b29629fbbd94a22e"
+          }
+        },
+        {
+          "client_id": "1031211553449-u67g7apft7u0d2nhqg9muov6cevivvsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg7t1B73Wf-Pdu7RKuOshqw8Bn50qSB_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031211553449-3at050vc6pe74f0gmcbl7hqsotp9noke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1031211553449-tknc3aptlho2df4n03d2179fnp76nqup.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031211553449:android:87e8bc5d6e3f9823",
+        "android_client_info": {
+          "package_name": "ahomiya.com.reckit_android.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031211553449-60d828cd5vgptnuqksd8lc8s977j97jl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.dev",
+            "certificate_hash": "729e685ca6e067880bd77f258d3ca245c43221e7"
+          }
+        },
+        {
+          "client_id": "1031211553449-f8r9trdgqeliqhi99c1oicndb09747ha.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.dev",
+            "certificate_hash": "811c0efad510368eca4a6f09b29629fbbd94a22e"
+          }
+        },
+        {
+          "client_id": "1031211553449-u5o5ai315os2dn18fdigcbf8lgadbt0a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.dev",
+            "certificate_hash": "b76f7b879efc40690069e0cb2f29470ab3b54b66"
+          }
+        },
+        {
+          "client_id": "1031211553449-u67g7apft7u0d2nhqg9muov6cevivvsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg7t1B73Wf-Pdu7RKuOshqw8Bn50qSB_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031211553449-3at050vc6pe74f0gmcbl7hqsotp9noke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1031211553449-tknc3aptlho2df4n03d2179fnp76nqup.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031211553449:android:d2c5a5d4d54818a6",
+        "android_client_info": {
+          "package_name": "ahomiya.com.reckit_android.prod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031211553449-dtp0mdkv5bb5b8p11d888h30hhqg2a5c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.prod",
+            "certificate_hash": "b76f7b879efc40690069e0cb2f29470ab3b54b66"
+          }
+        },
+        {
+          "client_id": "1031211553449-jl1o871eposdm8sh87vjfr9885t7sdjf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.prod",
+            "certificate_hash": "811c0efad510368eca4a6f09b29629fbbd94a22e"
+          }
+        },
+        {
+          "client_id": "1031211553449-qhd1sg8v3jel661n3h12n5uujd50ou75.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.prod",
+            "certificate_hash": "729e685ca6e067880bd77f258d3ca245c43221e7"
+          }
+        },
+        {
+          "client_id": "1031211553449-u67g7apft7u0d2nhqg9muov6cevivvsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg7t1B73Wf-Pdu7RKuOshqw8Bn50qSB_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031211553449-3at050vc6pe74f0gmcbl7hqsotp9noke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1031211553449-tknc3aptlho2df4n03d2179fnp76nqup.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031211553449:android:ea1b6d3c46678c10",
+        "android_client_info": {
+          "package_name": "ahomiya.com.reckit_android.stg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031211553449-d08bbipu0udd8b7qvk01bscjipd15672.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.stg",
+            "certificate_hash": "b76f7b879efc40690069e0cb2f29470ab3b54b66"
+          }
+        },
+        {
+          "client_id": "1031211553449-ntmfun7k1locahrb81i0ktfubl6i8bbd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.stg",
+            "certificate_hash": "729e685ca6e067880bd77f258d3ca245c43221e7"
+          }
+        },
+        {
+          "client_id": "1031211553449-penhmbr35f5hor9oqe57ps27okksq54j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahomiya.com.reckit_android.stg",
+            "certificate_hash": "811c0efad510368eca4a6f09b29629fbbd94a22e"
+          }
+        },
+        {
+          "client_id": "1031211553449-u67g7apft7u0d2nhqg9muov6cevivvsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg7t1B73Wf-Pdu7RKuOshqw8Bn50qSB_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031211553449-3at050vc6pe74f0gmcbl7hqsotp9noke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1031211553449-tknc3aptlho2df4n03d2179fnp76nqup.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031211553449:android:155dce7bf79f5f78800fb8",
+        "android_client_info": {
+          "package_name": "com.reckitonline.reckit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031211553449-u67g7apft7u0d2nhqg9muov6cevivvsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg7t1B73Wf-Pdu7RKuOshqw8Bn50qSB_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031211553449-3at050vc6pe74f0gmcbl7hqsotp9noke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1031211553449-tknc3aptlho2df4n03d2179fnp76nqup.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

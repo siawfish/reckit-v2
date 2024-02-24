@@ -1,6 +1,7 @@
 import { create } from 'apisauce'
 
 export const baseURL = "http://144.126.247.97:8080/api"
+// export const baseURL = "http://localhost:8080/api"
 
 export const API = create({
     baseURL: baseURL

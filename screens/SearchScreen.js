@@ -15,12 +15,13 @@ export default function SearchScreen({
     route,
     navigation
 }) {
-    const { categories } = useSelector(state=>state.app)
+    const { categories, location } = useSelector(state=>state.app)
     const [query, setQuery] = React.useState("")
     const [inputLocation, setInputLocation] = React.useState("")
     const [results, setResults] = React.useState([])
     const [searchNow, setSearchNow] = React.useState(false)
     const [isSearching, setIsSearching] = React.useState(false)
+    const [lastDocument, setLastDocument] = React.useState(null)
 
     React.useEffect(()=>{
         if(route?.params?.category){
@@ -84,27 +85,18 @@ export default function SearchScreen({
                 }
             })
             if(ok){
+                if(data.status=="ZERO_RESULTS"){
+                    throw new Error("No results found for your location")
+                }
                 if(data.status==="OK"){
                     getResults(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
-                } else if(data.status=="ZERO_RESULTS"){
-                    Toast.show({
-                        text:"Invalid location",
-                        duration: 5000,
-                        position: "top",
-                        type: "danger"
-                    })
-                }
-            } else {
-                Toast.show({
-                    text:problem,
-                    duration: 5000,
-                    position: "top",
-                    type: "danger"
-                })
+                } 
+                return;
             }
+            throw new Error(data.error || problem)
         } catch (error) {
             Toast.show({
-                text:error.message,
+                text:error?.message,
                 duration: 5000,
                 position: "top",
                 type: "danger"
@@ -117,28 +109,20 @@ export default function SearchScreen({
             API.setBaseURL(baseURL)
             const { ok, data, problem } = await API.get('/search',{
                 query:query,
-                latitude:lat,
-                longitude:lon
+                lat:lat||location.lat,
+                long:lon||location.lon,
+                lastDocument:lastDocument
             })
             if(ok){
-                if(data.length<1){
-                    Toast.show({
-                        text:`Zero results found for your search`,
-                        duration: 5000,
-                        position: "top",
-                        type: "warning"
-                    })
+                if(data?.data.length<1){
+                    throw new Error("Zero results found for your search")
                 }
-                setResults(data)
-            } else {
-                Toast.show({
-                    text:data.error || problem,
-                    duration: 5000,
-                    position: "top",
-                    type: "danger"
-                })
+                setResults(data?.data)
+                setLastDocument(data?.lastDocument)
+                setIsSearching(false)
+                return;
             }
-            setIsSearching(false)
+            throw new Error(data.error || problem,)
         } catch (error) {
             Toast.show({
                 text:error.message,
@@ -197,6 +181,11 @@ export default function SearchScreen({
                         keyExtractor={item=>item.key}
                         ListHeaderComponent={<Text style={[styles.title, {backgroundColor:"#fff"}]}>Suggested categories</Text>}
                         showsVerticalScrollIndicator={false}
+                        onEndReached={()=>{
+                            if(lastDocument){
+                                search()
+                            }
+                        }}
                         stickyHeaderIndices={[0]}
                     /> :
                     <FlatList

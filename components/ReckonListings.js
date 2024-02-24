@@ -10,8 +10,6 @@ import { addReckits, setMyReckits, addMyReckits } from '../redux/reckitStore'
 import FloatingButton from './FloatingButton'
 import PostForm from './PostForm'
 
-const delay = 60
-
 export default function ReckonListings({
     navigation
 }){
@@ -23,26 +21,20 @@ export default function ReckonListings({
     const [refreshing, setRefreshing] = React.useState(false)
     const [reckit, setReckit] = React.useState("")
     const [openPost, setOpenPost] = React.useState(false)
+    const [lastDocument, setLastDocument] = React.useState(null)
 
-    React.useEffect(()=>{
+    React.useLayoutEffect(()=>{
         getMyReckits()
-    },[])
-
-
-    React.useEffect(()=>{
-        let timer = setTimeout(
-            () => getMyReckits(), delay * 1000
-        )
-        return () => {
-          clearTimeout(timer);
-        };
     },[])
 
     const postReckit = async()=> {
         try {
             setIsSubmitting(true)
             API.setHeader('Authorization', `Beaerer ${authToken}`)
-            const { ok, data, problem } = await API.post('reckits', {message:reckit})
+            const { ok, data, problem } = await API.post('reckits', {
+                message:reckit,
+                lastDocument
+            })
             if(ok){
                 Toast.show({
                     text:"Reckit sent!",
@@ -90,13 +82,14 @@ export default function ReckonListings({
             API.setHeader("Authorization", `Bearer ${authToken}`)
             const { ok, data, problem } = await API.get('/me/reckits')
             if(ok){
-                const myReckits = data.reverse()
+                const myReckits = data?.data
                 dispatch(setMyReckits(myReckits))
+                setLastDocument(data?.lastDocument)
                 setRefreshing(false)
                 setIsLoading(false)
-            } else {
-                throw new Error(data?.error || problem)
+                return;
             }
+            throw new Error(data?.error || problem)
         } catch (error) {
             Toast.show({
                 text:error.message,
@@ -125,6 +118,11 @@ export default function ReckonListings({
                     onRefresh={()=>getMyReckits()}
                     keyExtractor={item=>item.id}
                     contentContainerStyle={{paddingVertical:20}}
+                    onEndReached={()=>{
+                        if(lastDocument){
+                            getMyReckits()
+                        }
+                    }}
                     ListEmptyComponent={
                         <NoListing 
                             title="Have any experiences you'd like to share?" 

@@ -29,42 +29,23 @@ export default function ReviewsTab({
         try {
             setIsLoading(true)
             if(review.length<3){
-                Toast.show({
-                    text:"Reviews can't be lesser than 4 characters.",
-                    duration: 5000,
-                    position: "top",
-                    type: "danger"
-                })
-                setIsLoading(false)
-                return
+                throw new Error("Reviews can't be lesser than 4 characters.")
             }
             API.setHeader('Authorization', 'Bearer '+authToken)
             let reviewObj = {
                 business:business,
-                message:review,
-                author:{
-                    id:profile.id,
-                    name:profile.displayName,
-                    email:profile.email,
-                    avatar:profile.avatar
-                }
+                message:review
             }
             const { ok, data, problem } = await API.post("/reviews", reviewObj)
             if(ok){
                 setIsLoading(false)
                 toggleReviewForm()
                 refreshBusiness()
-            } else {
-                setOpenReviewPost(false)
-                Toast.show({
-                    text:data.error||problem,
-                    duration: 5000,
-                    position: "top",
-                    type: "danger"
-                })
-                setIsLoading(false)
-            }
+                return;
+            } 
+            throw new Error(data?.error||problem)
         } catch (error) {
+            setOpenReviewPost(false)
             Toast.show({
                 text:error.message,
                 duration: 5000,

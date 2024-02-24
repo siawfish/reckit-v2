@@ -13,7 +13,6 @@ import { addReckits, setReckits, addMyReckits } from '../redux/reckitStore'
 import NoListing from '../components/NoListing'
 
 const windowHeight = Dimensions.get('window').height
-const delay = 60
 
 export default function Reckit({
     navigation
@@ -26,28 +25,27 @@ export default function Reckit({
     const [reckit, setReckit] = React.useState("")
     const [isLoading, setIsLoading] = React.useState(true)
     const [isSubmitting, setIsSubmitting] = React.useState(false)
+    const [lastDocument, setLastDocument] = React.useState(null)
 
-    React.useEffect(()=>{
+    React.useLayoutEffect(()=>{
         getReckits()
     },[])
 
     const getReckits = async()=> {
         try {
             setRefreshing(true)
-            const { ok, data, problem } = await API.get('/reckits')
+            const { ok, data, problem } = await API.get('/reckits', {
+                lastDocument
+            })
             if(ok){
-                const reckits = data.reverse()
+                const reckits = data?.data
                 dispatch(setReckits(reckits))
-            } else {
-                Toast.show({
-                    text:data.error||problem,
-                    duration: 5000,
-                    position: "top",
-                    type: "danger"
-                })
+                setLastDocument(data?.lastDocument)
+                setIsLoading(false)
+                setRefreshing(false)
+                return;
             }
-            setIsLoading(false)
-            setRefreshing(false)
+            throw new Error(data.error || problem)
         } catch (error) {
             Toast.show({
                 text:error?.message,
@@ -82,10 +80,10 @@ export default function Reckit({
                 })
                 setReckit("")
                 setOpenPost(false)
-            } else {
-                throw new Error(data.error || problem)
+                setIsSubmitting(false)
+                return;
             }
-            setIsSubmitting(false)
+            throw new Error(data.error || problem)
         } catch (error) {
             Toast.show({
                 text:error.message,
@@ -133,6 +131,11 @@ export default function Reckit({
                         <FlatList
                             data={reckits}
                             onRefresh={()=>getReckits()}
+                            onEndReached={()=>{
+                                if(lastDocument){
+                                    getReckits()
+                                }
+                            }}
                             refreshing={refreshing}
                             keyExtractor={item=>item.id}
                             renderItem={({item})=><Reckon getMyReckits={getReckits} navigation={navigation} item={item} />}

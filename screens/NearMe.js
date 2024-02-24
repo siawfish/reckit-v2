@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { 
     Text, 
     StyleSheet, 
@@ -30,49 +30,29 @@ export default function NearMe({
     const dispatch = useDispatch()
     const { businesses }  = useSelector(state=>state.business)
     const { location, locationPermission } = useSelector(state=>state.app)
-    const [showCategory, setShowCategory] = React.useState(true)
     const [isLoading, setIsLoading] = React.useState(true)
     const [refreshing, setRefreshing] = React.useState(false)
-    const [offset, setOffset] = React.useState(null)
 
-    React.useEffect(()=>{
+    React.useLayoutEffect(()=>{
         if(locationPermission){
             getBusinesses()
         }
     },[locationPermission])
 
-    const scrollHandler = (event) => {
-        let currentOffset = event.nativeEvent.contentOffset.y;
-        let direction = currentOffset > offset ? 'down' : 'up';
-        setOffset(currentOffset);
-        if(currentOffset < windowHeight/2){
-            setShowCategory(true)
-        }
-        if(direction === 'down'){
-            setShowCategory(false)
-        }
-    }
-
     const getBusinesses = async ()=> {
         try {
             setRefreshing(true)
-            const { ok, data, problem } = await API.get('/search', {
-                latitude:location.lat, 
-                longitude:location.lon
+            const { ok, data, problem } = await API.get('/near-me', {
+                lat:location.lat, 
+                long:location.lon
             })
             if(ok){
                 dispatch(setBusinesses(data))
-            } else {
-                Toast.show({
-                    text:data.error||problem,
-                    duration: 5000,
-                    position: "top",
-                    type: "danger"
-                })
-                dispatch(setBusinesses([]))
+                setRefreshing(false)
+                setIsLoading(false)
+                return
             }
-            setRefreshing(false)
-            setIsLoading(false)
+            throw new Error(data.error||problem)
         } catch (error) {
             Toast.show({
                 text:error.message,
@@ -115,21 +95,18 @@ export default function NearMe({
                     />
                 </LinearGradient>
             </View>
-            {
-                showCategory &&
-                <Animatable.View duration={300} animation='fadeInUpBig' style={styles.categoryContainer}>
-                    <View style={styles.category}>
-                        <Category navigation={navigation} caption="Food & Restaurant" type="food_restaurant" />
-                        <Category navigation={navigation} caption="Bar & Nightlife" type="bar_nightlife" />
-                        <Category navigation={navigation} caption="Small Business" type="small_business" />
-                    </View>
-                    <View style={styles.category}>
-                        <Category navigation={navigation} caption="Accommodation" type="accommodation" />
-                        <Category navigation={navigation} caption="Event" type="event" />
-                        <Category navigation={navigation} caption="See More" type="more" />
-                    </View>
-                </Animatable.View>
-            }
+            <Animatable.View duration={300} animation='fadeInUpBig' style={styles.categoryContainer}>
+                <View style={styles.category}>
+                    <Category navigation={navigation} caption="Food & Restaurant" type="food_restaurant" />
+                    <Category navigation={navigation} caption="Bar & Nightlife" type="bar_nightlife" />
+                    <Category navigation={navigation} caption="Small Business" type="small_business" />
+                </View>
+                <View style={styles.category}>
+                    <Category navigation={navigation} caption="Accommodation" type="accommodation" />
+                    <Category navigation={navigation} caption="Event" type="event" />
+                    <Category navigation={navigation} caption="See More" type="more" />
+                </View>
+            </Animatable.View>
             {
                 locationPermission ? 
                 <>
@@ -141,8 +118,6 @@ export default function NearMe({
                             :
                         <View style={styles.contentWrapper}>
                             <FlatList
-                                bounces={false}
-                                onScroll={scrollHandler}
                                 onRefresh={getBusinesses}
                                 refreshing={refreshing}
                                 stickyHeaderIndices={[0]}

@@ -29,15 +29,42 @@ export default function ListItem({
     const closingHour = opening?.close
     const status = opening?.status
 
-    const isCurrentTimeBetweenOpeningClosing = (opening, closing) => {
-        if(status!==1) return false;
-        const day = dayjs(`${date.toLocaleDateString()} ${new Date().toLocaleTimeString()}`, format)
-        const open = dayjs(`${date.toLocaleDateString()} ${opening}`, format)
-        const close = dayjs(`${date.toLocaleDateString()} ${closing}`, format)
-        return day.isBetween(open, close, null, '[)')
+    function convertTo24Hour(timeStr) {
+        let [time, modifier] = timeStr.split(' ');
+    
+        let [hours, minutes] = time.split(':');
+    
+        if (hours === '12') {
+            hours = '00';
+        }
+    
+        if (modifier === 'PM') {
+            hours = parseInt(hours, 10) + 12;
+        }
+        let date = new Date();
+        date.setHours(hours);
+        date.setMinutes(minutes);
+        return date;
     }
 
-    const isOpened = isCurrentTimeBetweenOpeningClosing(openingHour, closingHour)
+    const isCurrentTimeBetweenOpeningClosing = (timeInfo) => {
+        const now = new Date();
+        if (!timeInfo?.openingHour || !timeInfo?.closingHour || !timeInfo?.status) return false;
+        const openingHour = convertTo24Hour(timeInfo?.openingHour);
+        const closingHour = convertTo24Hour(timeInfo?.closingHour);
+        if (now > openingHour && now < closingHour) {
+            if(timeInfo?.status?.toString()==="1"){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    const isOpened = isCurrentTimeBetweenOpeningClosing({
+        openingHour,
+        closingHour,
+        status
+    })
 
     const haversine_distance = (mk1, mk2) => {
         var R = 3958.8; // Radius of the Earth in miles

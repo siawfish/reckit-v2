@@ -17,7 +17,7 @@ export default function ReckitDetails({
     onChangeText,
     defaultComment,
     user,
-    onDeleteComplete
+    onDeleteComplete,
 }){
     return (
         <Modal
@@ -25,7 +25,7 @@ export default function ReckitDetails({
             visible={open}
         >
             <SafeAreaView style={styles.wrapper}>
-                <View style={{height:"100%", paddingBottom:100}}>
+                <KeyboardAwareScrollView contentContainerStyle={{paddingBottom:100, height: "100%"}}>
                     <View style={styles.container}>
                         <FlatList 
                             ListHeaderComponent={
@@ -41,7 +41,7 @@ export default function ReckitDetails({
                             }
                             data={comments}
                             renderItem={({item})=><Comment onClose={onClose} onDeleteComplete={onDeleteComplete} comment={item}  />}
-                            keyExtractor={item=>item.id}
+                            keyExtractor={(key)=>key.id}
                             contentContainerStyle={styles.commentArea}
                             ListEmptyComponent={<Text style={{textAlign:"center", color:"#999"}}>No replies to reckit yet.</Text>}
                         />
@@ -50,14 +50,13 @@ export default function ReckitDetails({
                         <Reply 
                             defaultValue={defaultComment}
                             showRepliesLink={false}
-                            item={item}
                             isSubmitting={isSubmitting}
                             onSubmit={onSubmit}
                             onChangeText={onChangeText}
                             user={user}
                         />
                     </View>
-                </View>
+                </KeyboardAwareScrollView>
             </SafeAreaView>
         </Modal>
     )

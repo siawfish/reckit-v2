@@ -2,7 +2,7 @@
   "expo": {
     "name": "Reckit",
     "slug": "reckit",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -20,13 +20,26 @@
       "infoPlist": {
         "NSCameraUsageDescription": "Reckit uses the camera to take pictures for your profile photo and business images.",
         "NSLocationWhenInUseUsageDescription": "Reckit requires access to your location so that we can find closest businesses.",
-        "NSPhotoLibraryUsageDescription": "Reckit requires access to your photos so you can upload business photos."
+        "NSPhotoLibraryUsageDescription": "Reckit requires access to your photos so you can upload business photos.",
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
       }
     },
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "package": "com.reckitonline.reckit",
-      "versionCode": 11
+      "versionCode": 12,
+      "googleServicesFile": "./google-services.json",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.VIBRATE",
+        "android.permission.ACCESS_NOTIFICATION_POLICY",
+        "android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

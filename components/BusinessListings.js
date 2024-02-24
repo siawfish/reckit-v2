@@ -14,7 +14,7 @@ export default function BusinessListings({navigation}) {
     const { authToken } = useSelector(state=>state.app)
     const [isLoading, setIsLoading] = React.useState(true)
 
-    React.useEffect(()=>{
+    React.useLayoutEffect(()=>{
         getMyBusinesses()
     },[])
 
@@ -25,9 +25,9 @@ export default function BusinessListings({navigation}) {
             if(ok){
                 dispatch(setMyBusiness(data))
                 setIsLoading(false)
-            } else {
-                throw new Error(data.error ?? problem)
+                return
             }
+            throw new Error(data.error ?? problem)
         } catch (error) {
             console.log(error.message)
             Toast.show({
@@ -62,11 +62,13 @@ export default function BusinessListings({navigation}) {
                     <ActivityIndicator size="small" color="#7536ad" />
                 </View> :
                 <FlatList
+                    refreshing={isLoading}
+                    onRefresh={getMyBusinesses}
                     data={myBusinesses}
                     renderItem={({item})=><Business navigation={navigation} item={item} />}
                     keyExtractor={item=>item.id}
                     showsVerticalScrollIndicator={false}
-                    contentContainerStyle={{paddingHorizontal:20}}
+                    contentContainerStyle={{paddingHorizontal:20, paddingBottom:40}}
                     ListEmptyComponent={<NoListing showButton={false} />}
                 />
             }

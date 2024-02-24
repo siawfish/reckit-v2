@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import NearMe from '../screens/NearMe'
 import Reckit from '../screens/Reckit'
@@ -8,15 +8,93 @@ import ReckitButton from '../components/ReckitButton'
 import LoginForm from '../components/LoginForm'
 import { useSelector, useDispatch } from 'react-redux'
 import { API } from '../utils/confiq'
-import { Alert } from 'react-native'
+import { Alert, Platform } from 'react-native'
 import { setUserProfile, resetAppStore } from '../redux/appStore'
+import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
+import { Toast } from 'native-base'
+import Constants from 'expo-constants';
 
 const Tab = createBottomTabNavigator()
 
 
 export default function MainNavigation () {
     const dispatch = useDispatch()
-    const { isAuthenticated, authToken } = useSelector(state=>state.app) 
+    const { isAuthenticated, authToken, profile } = useSelector(state=>state.app) 
+    const [pushToken, setPushToken] = React.useState(null)
+
+    useLayoutEffect(()=>{
+        if(!isAuthenticated) return;
+        registerForPushNotificationsAsync()
+    },[isAuthenticated])
+
+    const registerForPushNotificationsAsync = async () => {
+        try {
+            let token;
+    
+            if (Platform.OS === 'android') {
+                await Notifications.setNotificationChannelAsync('default', {
+                    name: 'default',
+                    importance: Notifications.AndroidImportance.MAX,
+                    vibrationPattern: [0, 250, 250, 250],
+                    lightColor: '#FF231F7C',
+                });
+            }
+        
+            if (Device.isDevice) {
+                const { status: existingStatus } = await Notifications.getPermissionsAsync();
+                let finalStatus = existingStatus;
+                if (existingStatus !== 'granted') {
+                    const { status } = await Notifications.requestPermissionsAsync();
+                    finalStatus = status;
+                }
+                if (finalStatus !== 'granted') {
+                    alert('Failed to get push token for push notification!');
+                    return;
+                }
+                token = (await Notifications.getExpoPushTokenAsync({
+                    projectId: Constants.expoConfig.extra.eas.projectId,
+                })).data;
+                if(token){
+                    await updatePushToken(token)
+                }
+                return;
+            } 
+            throw new Error('Must use physical device for Push Notifications');
+        } catch (error) {
+            Toast.show({
+                text:error.message,
+                duration: 5000,
+                position: "bottom",
+                type: "danger"
+            })
+        }
+    }
+    
+    const updatePushToken = async (token)=> {
+        try {
+            API.setHeader(`Authorization`, `Bearer ${authToken}`)
+            const { ok, data, problem } = await API.post('/register-notification', { 
+                token,
+                id: profile?.id
+            })
+            if(ok){
+                dispatch(setUserProfile({
+                    ...profile,
+                    pushToken:token
+                }))
+                return;
+            }
+            throw new Error(data?.error??problem)
+        } catch (error) {
+            Toast.show({
+                text:error.message,
+                duration: 5000,
+                position: "bottom",
+                type: "danger"
+            })
+        }
+    }
 
     useEffect(()=>{
         verifyUser()
@@ -28,11 +106,16 @@ export default function MainNavigation () {
             const { ok, data, problem } = await API.post('/logout')
             if(ok){
                 dispatch(resetAppStore())
-            } else {
-                throw new Error(data?.error??problem)
+                return;
             }
+            throw new Error(data?.error??problem)
         } catch (error) {
-            Alert.alert('Logout Error', error.message)
+            Toast.show({
+                text:error.message,
+                duration: 5000,
+                position: "top",
+                type: "danger"
+            })
         }
     }
 

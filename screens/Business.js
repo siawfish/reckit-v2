@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, View, ScrollView, Dimensions, Image, ActivityIndicator, Platform, FlatList } from 'react-native'
+import { Text, StyleSheet, View, Dimensions, Image, ActivityIndicator, Platform, FlatList } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import HomeTab from '../components/HomeTab'

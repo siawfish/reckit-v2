@@ -11,13 +11,11 @@ import { updateMyReckits } from '../redux/reckitStore'
 export default function Reckon({
     navigation,
     item,
-    getMyReckits
+    getMyReckits,
 }){
-    const dispatch = useDispatch()
     const { authToken, profile } = useSelector(state=>state.app)
     const [showDetails, setShowDetails] = React.useState(false)
     const [showComment, setShowComment] = React.useState(false)
-    const [comments, setComments] = React.useState(item?.comments)
     const [comment, setComment] = React.useState("")
     const [isSubmitting, setIsSubmitting] = React.useState(false)
     
@@ -36,15 +34,7 @@ export default function Reckon({
             }
             const { ok, data, problem } = await API.post('/reply', reply)
             if(ok){
-                if(comments?.length<1){
-                    setComments([data.reply])
-                } else {
-                    setComments([...comments, data.reply])
-                    dispatch(updateMyReckits({
-                        ...item,
-                        comments:[...comments, data.reply]
-                    }))
-                }
+                await getMyReckits()
                 setComment("")
                 setIsSubmitting(false)
                 return true
@@ -74,7 +64,7 @@ export default function Reckon({
                     onDeleteComplete={getMyReckits}
                     item={item} 
                     toggleShowComment={toggleShowComment}
-                    commentsCount={comments?.length}
+                    commentsCount={item?.comments?.length}
                 />
                 {
                     showComment &&
@@ -93,9 +83,9 @@ export default function Reckon({
                 user={profile}
                 open={showDetails}
                 item={item}
-                commentsCount={comments?.length}
+                commentsCount={item?.comments?.length}
                 onClose={toggleDetails}
-                comments={comments}
+                comments={item?.comments}
                 onSubmit={onSubmit}
                 defaultComment={comment}
                 isSubmitting={isSubmitting}

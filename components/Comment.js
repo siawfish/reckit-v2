@@ -2,18 +2,21 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity, Alert } from 'react-native'
 import propic from '../assets/propic.jpeg'
 import dayjs from 'dayjs'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { AntDesign } from '@expo/vector-icons'
 import { Toast } from 'native-base'
 import { API } from '../utils/confiq'
+import { removeReckitReply, removeMyReckitReply } from '../redux/reckitStore'
 
 export default function Comment({
     comment,
     onDeleteComplete,
-    onClose
+    onClose,
+    type="reckit"
 }) {
     const [isDeleting, setIsDeleting] = useState(false);
     const { authToken, profile } = useSelector(state=>state.app)
+    const dispatch = useDispatch()
     const onDelete = ()=> {
         // confirm alert
         Alert.alert(

@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { MaterialIcons, FontAwesome, FontAwesome5, MaterialCommunityIcons, Feather } from '@expo/vector-icons'
 
 export default function CategoryIcon({
     type
 }){
     const renderIcon = (type) => {
-        switch (type.toLowerCase()) {
+        switch (type?.toLowerCase()) {
             case "food_restaurant":
                 return <MaterialIcons name="restaurant-menu" size={18} color="white" />
             case "bar_nightlife":
@@ -24,6 +24,7 @@ export default function CategoryIcon({
             case "beauty_spa":
                 return <FontAwesome5 name="cut" size={18} color="white" />
             default:
+                return <FontAwesome5 name="cut" size={18} color="white" />
             break;
         }
     }

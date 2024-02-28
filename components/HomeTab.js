@@ -19,7 +19,7 @@ export default function HomeTab({
     const dayArr = today.split(' ')
     const format = 'MM/DD/YY HH:mm'
 
-    const opening = business?.business_hours.find(time=>{
+    const opening = business?.business_hours?.find(time=>{
         return time.day==dayArr[0].toLowerCase()
     })
 
@@ -66,7 +66,7 @@ export default function HomeTab({
         setShowOpeningHours(!showOpeningHours)
     }
 
-    const categoryItem = categories.filter(category=>{
+    const categoryItem = categories?.filter(category=>{
         return category.name == business?.category
     })
 
@@ -103,7 +103,7 @@ export default function HomeTab({
         });
     }
 
-    const sortedOpeningHours = business?.business_hours.sort((a, b)=>{
+    const sortedOpeningHours = business?.business_hours?.sort((a, b)=>{
         const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
         return days.indexOf(a.day) - days.indexOf(b.day)
     })
@@ -154,7 +154,7 @@ export default function HomeTab({
             </View>
             <View style={styles.sectionWrapper}>
                 <View style={styles.categoryWrapper}>
-                    <CategoryIcon type={categoryItem[0].key} />
+                    <CategoryIcon type={categoryItem?.[0]?.key} />
                     <View style={styles.categoryInfo}>
                         <Text style={styles.category}>{business?.category}</Text>
                         <Text style={{fontFamily: 'Open-Sans', width:"95%"}}>
@@ -174,8 +174,8 @@ export default function HomeTab({
             </View>
             <View style={styles.mapWrapper}>
                 <Map 
-                    lat={business.location.lat}
-                    lng={business.location.lng}
+                    lat={business.location?.lat}
+                    lng={business.location?.lng}
                 />
             </View>
             <View style={styles.sectionWrapper}>

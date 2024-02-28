@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, View, SafeAreaView, Modal, FlatList } from 'react-native'
+import { Text, StyleSheet, View, SafeAreaView, Modal, FlatList, ActivityIndicator } from 'react-native'
 import BackButton from './BackButton'
 import Comment from './Comment'
 import Question from './Question'
@@ -26,6 +26,25 @@ export default function ReckitDetails({
         >
             <SafeAreaView style={styles.wrapper}>
                 <KeyboardAwareScrollView contentContainerStyle={{paddingBottom:100, height: "100%"}}>
+                    {
+                        isSubmitting &&
+                        <View 
+                            style={{
+                                alignItems:"center", 
+                                justifyContent:"center", 
+                                position: "absolute", 
+                                top: 40, 
+                                bottom: 0, 
+                                width: "100%",
+                                zIndex: 100,
+                                backgroundColor:"#fff",
+                                opacity:0.5
+                            }}
+                        >
+                            <ActivityIndicator size="small" color="#7536ad" />
+                        </View>
+                    }
+
                     <View style={styles.container}>
                         <FlatList 
                             ListHeaderComponent={

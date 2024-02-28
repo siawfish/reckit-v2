@@ -50,6 +50,7 @@ export default function Business({
             setIsLoading(true)
             const { ok, data, problem } = await API.get("/business/"+route.params.bid)
             if(ok){
+                console.log("data.business: ", data.business)
                 const reviewsArr = await getReviews()
                 setBusiness(data.business)
                 setReviews(reviewsArr)

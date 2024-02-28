@@ -2,7 +2,7 @@
   "expo": {
     "name": "Reckit",
     "slug": "reckit",
-    "version": "2.0.6",
+    "version": "2.0.7",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -29,7 +29,7 @@
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "package": "com.reckitonline.reckit",
-      "versionCode": 12,
+      "versionCode": 13,
       "googleServicesFile": "./google-services.json",
       "permissions": [
         "android.permission.CAMERA",
